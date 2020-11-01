@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+sjs.open("target",748,450);
+
+var background = new sjs.Image("Images/instructions.jpg");
+
+window.addEventListener("keydown", function(e){
+	window.location = "index.html"
+});
+
+}
+</script>
+</head>
+<body onload="start()">
+<h1> Custom Breakout </h1>
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+</html>

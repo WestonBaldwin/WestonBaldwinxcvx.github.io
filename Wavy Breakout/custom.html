@@ -1,0 +1,94 @@
+<html>
+<head>
+<title> Wavy Breakout </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+var level = [];
+function start(){
+sjs.open("target",750,450);
+
+var background = new sjs.Image("Images/background.png");
+
+//trash
+var trash = new sjs.Image("Images/trash.png")
+trash.type = "trash";
+trash.moveTo(700,10);
+trash.setSize(50,50);
+
+//onhits
+sjs.onHit("trash","block", function(x,y){
+	y.destroy();
+	sjs.removeFromArray(level,y);
+});
+
+sjs.onHit("trash",["blockH", "blockW"], function(x,y){
+	y.destroy();
+	sjs.removeFromArray(level,y);
+});
+
+} //end start
+
+function block(){
+	var block = new sjs.Image("Images/block.png");
+	level.push(block);
+	block.type = "block";
+	block.setHeight(30);
+	block.center();
+	block.onMouseDown(function(){
+		block.draggable();
+		block.follow(sjs.mouse);
+	});
+}
+
+function blockH(){
+	var blockH = new sjs.Image("Images/blockH.png");
+	level.push(blockH);
+	blockH.type = "blockH";
+	blockH.setHeight(30);
+	blockH.center();
+	blockH.onMouseDown(function(){
+		blockH.draggable();
+		blockH.follow(sjs.mouse);
+	});
+}
+
+function blockW(){
+	var blockW = new sjs.Image("Images/blockW.png");
+	level.push(blockW);
+	blockW.type = "blockW";
+	blockW.setHeight(30);
+	blockW.center();
+	blockW.onMouseDown(function(){
+		blockW.draggable();
+		blockW.follow(sjs.mouse);
+	});
+}
+
+function playBtn(){
+	localStorage.setItem('level', sjs.saveImageArray(level));
+	window.location ='custom_test.html';
+}
+
+
+function exampleBtn(){
+	window.location = "example.html"
+}
+
+function menuBtn(){
+	window.location = "menu.html"
+}
+</script>
+</script>
+</head>
+<body onload="start()">
+<h1> Wavy Breakout </h1>
+<center>
+<input type="image" src="Images/block.png" onclick="block()">
+<input type="image" src="Images/blockH.png" onclick="blockH()">
+<input type="image" src="Images/blockW.png" onclick="blockW()">
+<input type="image" src="Images/playBtn.png" onclick="playBtn()">
+<input type="image" src="Images/exampleBtn.png" onclick="exampleBtn()">
+<input type="image" src="Images/mainmenu.png" onclick="menuBtn()">
+</center>
+<div id="target" style="margin:auto;background:black;"></div>
+</html>

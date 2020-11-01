@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+sjs.open("target",1204,677);
+
+var background = new sjs.Image("Images/menu.png");
+
+var startBnt = new sjs.Button("ᐅ", function(){
+	window.location ='custom.html';
+});
+startBnt.moveTo(675,260);
+
+var howtoplayBnt = new sjs.Button("ᐅ", function(){
+	window.open("instructions.html");
+});
+howtoplayBnt.moveTo(760,355);
+
+var creditsBnt = new sjs.Button("ᐅ", function(){
+	window.open("credits.html");
+});
+creditsBnt.moveTo(700,445);
+
+}
+</script>
+</head>
+<body onload="start()">
+<h1> Custom Breakout </h1>
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+</html>

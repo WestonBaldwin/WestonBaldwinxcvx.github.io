@@ -1,0 +1,109 @@
+
+<head>
+<title> Custom Game </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+var level = [];
+function start(){
+sjs.open("target",750,450);
+
+var background = new sjs.Image("Images/background.png");
+
+sjs.loadImageArray(localStorage.getItem('level'));
+
+
+//objects
+var ball = new sjs.Image("Images/ball.png");
+ball.type = "ball";
+ball.setSize(25,25);
+ball.center().bottom().offset(0,-10);
+ball.friction = .1;
+ball.accel = .1;
+ball.bounce();
+
+var paddle1 = new sjs.Image("Images/paddle.png")
+paddle1.type = "paddle1";
+paddle1.setSize(33,10)
+paddle1.center().bottom().offset(-33,0);
+paddle1.friction = .1;
+paddle1.accel = .1; 
+
+var paddle2 = new sjs.Image("Images/paddle.png")
+paddle2.type = "paddle2";
+paddle2.setSize(33,10)
+paddle2.center().bottom();
+paddle2.friction = .1;
+paddle2.accel = .1;
+
+var paddle3 = new sjs.Image("Images/paddle.png")
+paddle3.type = "paddle3";
+paddle3.setSize(33,10)
+paddle3.center().bottom().offset(33,0);
+paddle3.friction = .1;
+paddle3.accel = .1;
+
+//controls
+var ballstart = true;
+
+sjs.keyDown(UP_KEY, function(){
+	if(ballstart == true){
+		ballstart = false;
+		ball.pushUp(5);
+		ball.friction = 0;
+		ballstart = false;
+	}
+})
+
+sjs.keyDown(LEFT_KEY, function(){
+	paddle2.pushLeft();
+	paddle1.pushLeft();
+	paddle3.pushLeft();
+	if(ballstart == true){
+		ball.pushLeft();
+	}
+});
+
+sjs.keyDown(RIGHT_KEY, function(){
+	paddle2.pushRight();
+	paddle1.pushRight();
+	paddle3.pushRight();
+	if(ballstart == true){
+		ball.pushRight();
+	}
+});
+
+//onhits
+
+sjs.onHit("ball","paddle1", function(){
+	sjs.bounceOff(ball,paddle1);
+	ball.pushLeft(3);
+});
+
+sjs.onHit("ball","paddle2", function(){
+	sjs.bounceOff(ball,paddle2);
+});
+
+sjs.onHit("ball","paddle3", function(){
+	sjs.bounceOff(ball,paddle3);
+	ball.pushRight(3);
+});
+
+sjs.onHit("ball","bottom_screen", function(){
+	window.location = "gameover.html";
+});
+
+sjs.onHit("ball","block", function(x,y){
+	sjs.bounceOff(x,y);
+	y.destroy();
+});
+
+
+} //end start
+</script>
+</script>
+</head>
+<body onload="start()">
+<h1> Custom Game </h1>
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+</html>8

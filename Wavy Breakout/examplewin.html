@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> You Win! </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+sjs.open("target",748,450);
+
+var background = new sjs.Image("Images/blurredbackground.jpg");
+
+var gameover_txt = new sjs.Text("You Win!", 44, "black");
+gameover_txt.center().offset(0,-50);
+
+var restartBtn = new sjs.Button("play again", function(){
+window.location = "example.html";
+});
+restartBtn.center();
+
+var menu = new sjs.Button("build new level", function(){
+window.location = "custom.html";
+});
+menu.center().offset(0,50);
+}
+</script>
+</head>
+<body onload="start()">
+<h1> You Win! </h1>
+
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+</html>

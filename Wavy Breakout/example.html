@@ -1,0 +1,131 @@
+
+<head>
+<title> Wavy Breakout </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+var level = [];
+function start(){
+sjs.open("target",750,450);
+
+var background = new sjs.Image("Images/background.png");
+
+sjs.loadImageArray('[{"width":69,"height":30,"x":420.5,"y":67,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":0,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":73.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":140.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":208.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":411.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":480.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":547.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":613.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":681,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":274.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":338.5,"y":176,"sx":0,"sy":0,"topSpeed":10,"src":"Images/blockH.png","alt":"add text","type":"blockH","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":200.5,"y":175,"sx":0,"sy":0,"topSpeed":10,"src":"Images/blockH.png","alt":"add text","type":"blockH","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":63,"y":176,"sx":0,"sy":0,"topSpeed":10,"src":"Images/blockH.png","alt":"add text","type":"blockH","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":483.5,"y":175,"sx":0,"sy":0,"topSpeed":10,"src":"Images/blockH.png","alt":"add text","type":"blockH","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":634.5,"y":176,"sx":0,"sy":0,"topSpeed":10,"src":"Images/blockH.png","alt":"add text","type":"blockH","friction":0.05,"classType":"Image"},{"width":67,"height":30,"x":340.5,"y":69,"sx":0,"sy":0,"topSpeed":10,"src":"Images/blockW.png","alt":"add text","type":"blockW","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":275.5,"y":104,"sx":0,"sy":0,"topSpeed":10,"src":"Images/blockH.png","alt":"add text","type":"blockH","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":410.5,"y":108,"sx":0,"sy":0,"topSpeed":10,"src":"Images/blockH.png","alt":"add text","type":"blockH","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":267.5,"y":68,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":339.5,"y":34,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":342.5,"y":205,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":60.5,"y":53,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":629.5,"y":49,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":633.5,"y":282,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":481.5,"y":280,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":59.5,"y":284,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":198.5,"y":281,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"},{"width":69,"height":30,"x":338.5,"y":283,"sx":0,"sy":0,"topSpeed":10,"src":"Images/block.png","alt":"add text","type":"block","friction":0.05,"classType":"Image"}]')
+
+var playhow = new sjs.Text("Arrow keys control the platform, UP 🠕 key to start.",28,"black");
+playhow.center().offset(0,-50);
+
+setTimeout(function(){
+	playhow.destroy();
+},4000);
+
+
+
+//objects
+var ball = new sjs.Image("Images/ball.png");
+ball.type = "ball";
+ball.setSize(25,25);
+ball.center().bottom().offset(0,-11);
+ball.accel = .3;
+ball.friction = .1;
+ball.bounce();
+
+var paddle2 = new sjs.Image("Images/paddle.png")
+paddle2.type = "paddle2";
+paddle2.setSize(100,10);
+paddle2.center().bottom();
+paddle2.friction = .1;
+paddle2.accel = .3;
+
+//controls
+var ballstart = true;
+
+sjs.keyDown(UP_KEY, function(){
+	if(ballstart == true){
+		ballstart = false;
+		ball.accel = .1;
+		ball.pushUp(8);
+		ball.pushLeft();
+		ball.friction = 0;
+		ballstart = false;
+	}
+})
+
+sjs.keyDown(LEFT_KEY, function(){
+	paddle2.pushLeft();
+	if(ballstart == true){
+		ball.pushLeft();
+	}
+});
+
+sjs.keyDown(RIGHT_KEY, function(){
+	paddle2.pushRight();
+	if(ballstart == true){
+		ball.pushRight();
+	}
+});
+
+//onhits
+
+sjs.onHit("ball","paddle2", function(){
+	ball.stop();
+	sjs.bounceOff(ball,paddle2);
+	if(ball.getX()-paddle2.getX() < 20){
+		ball.pushLeft(((Math.random() * 7) + 5));
+		ball.pushUp(8);
+	} else {
+		if(ball.getX()-paddle2.getX() > 50){
+			ball.pushRight(((Math.random() * 7) + 5));
+			ball.pushUp(8);
+	} else {
+		ball.pushUp(8);
+	}}
+
+});
+
+var lose = new Audio("Music/lose.mp3");
+
+sjs.onHit("ball","bottom_screen", function(){
+	lose.play();
+	ball.destroy();
+	setTimeout(function(){
+		window.location = "examplegameover.html";
+	},600);
+});
+
+var blockhit = new Audio("Music/techno.mp3");
+
+sjs.onHit("ball","block", function(x,y){
+	sjs.bounceOff(x,y);
+	y.destroy();
+	blockhit.play();
+});
+
+sjs.onHit("ball", ["left_screen","right_screen"], function(x,y){
+	sjs.bounceOff(x,y);
+});
+
+sjs.onHit("ball", "blockH", function(x,y){
+	sjs.bounceOff(x,y);
+	blockhit.play();
+});
+
+var win = new Audio("Music/win.mp3")
+
+sjs.onHit("ball","blockW", function(x,y){
+	win.play();
+	y.destroy();
+	x.destroy();
+	ball.stop();
+	setTimeout(function(){
+		window.location = "win.html"
+	},2000);
+});
+} //end start
+</script>
+</script>
+</head>
+<body onload="start()">
+<h1> Wavy Breakout </h1>
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+</html>
